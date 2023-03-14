@@ -69,10 +69,6 @@ RegisterCommand(config["commandName"],function(source,args,rawCommand)
                 end
             end
         end 
-
-        if config["weather"] then 
-            TriggerEvent("setWeather")
-        end 
     end 
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -81,6 +77,10 @@ end)
 function CreateThreadRestart()
 
     print("[QAP SYSTEM] - THE RESTART SYSTEM STARTED SUCCESSFULLY!")
+	
+    if config["weather"] then 
+        TriggerEvent("setWeather")
+    end 
 
     CreateThread(function()
         while restart do 
