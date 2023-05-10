@@ -25,22 +25,20 @@ function vQAPZIN.startRestart(returnTime)
             Wait(0)
 
 			if restarttime > 0 then 
-           	 	AddText("~o~[QASYSTEM]~w~ TEMPO PARA REINICIALIZAÇÃO: ~r~"..restarttime.." ~w~")
+           	 	AddText("~o~[QAPDEV]~w~ TEMPO PARA REINICIALIZAÇÃO: ~r~"..restarttime.." ~w~")
 			end 
 
 			if restarttime < 1 then 
-				AddText("~o~[QASYSTEM]~w~ SERVIDOR EM PROCESSO DE REINICIALIZAÇÃO.")
+				AddText("~o~[QAPDEV]~w~ SERVIDOR EM PROCESSO DE REINICIALIZAÇÃO.")
 			end 
         end 
     end)
 
     CreateThread(function()
-        while true do 
+        while restarttime > 0 do 
             Wait(1000)
-            if restarttime > 0 then 
-                restarttime = restarttime - 1
-                print("[QAP DEV] THREAD: "..restarttime.." | CODE BY QAP")
-            end 
+            restarttime = restarttime - 1
+            print("[QAP DEV] THREAD: "..restarttime.." | CODE BY QAP")
         end 
     end)
 end 
@@ -48,10 +46,19 @@ end
 -- FUNCTION KICK PLAYERS
 -----------------------------------------------------------------------------------------------------------------------------------------
 function vQAPZIN.startKick()
-    repeat
-        print("[QAP DEV] PLAYER DENTRO DO CONTADOR.")
-    until restarttime == 0
-    RestartGame()
+    CreateThread(function()
+        while true do 
+            Wait(1000)
+
+            print("[QAP DEV] PLAYER DENTRO DO CONTADOR.")
+
+
+            if restarttime == 0 then 
+                RestartGame()
+                break
+            end 
+        end 
+    end)
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- FUNCTION ADD TEXT

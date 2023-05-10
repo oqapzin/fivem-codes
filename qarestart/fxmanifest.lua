@@ -1,15 +1,15 @@
 fx_version "adamant"
 game "gta5"
 
+shared_scripts {
+    "@vrp/lib/Utils.lua",
+    "config-side/config.lua"
+}
+
 server_scripts {
-	"@vrp/lib/utils.lua",
-	"config-side/config.lua",
-	"server-side/server.lua"
+    "server-side/server.lua"
 }
 
 client_scripts {
-	"@vrp/lib/utils.lua",
-	"config-side/config.lua",
-	"client-side/client.lua"
+    "client-side/client.lua"
 }
-              
